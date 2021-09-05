@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    font-family: fantasy 45px;
+    color: white;
+    background-color: black;
+}
+
+div > img {
+    background: white;
+    border-radius: 10px;
+    width: 70px;
+    height: 70px;
+}
+
+#ball {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#left { transform: scaleX(-1); }
+
+#up { transform: rotate(270deg); }
+
+#down { transform: rotate(90deg); }
+

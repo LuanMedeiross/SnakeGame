@@ -4,10 +4,10 @@ const body = document
 const LA = 20
 
 let scoreT = document.getElementById("score")
+let score = 3
 
 let snakeX = cvs.width/2
 let snakeY = cvs.height/2 
-let score = 0
 let d
 
 let trail = []
@@ -25,6 +25,15 @@ function changeDirection(e) {
     if (e.key === "ArrowRight") { d = "right" }
 }
 
+function direction(drct) {
+    let k
+    if (drct === "up")    { k = "ArrowUp" }
+    if (drct === "down")  { k = "ArrowDown" }
+    if (drct === "left")  { k = "ArrowLeft" }
+    if (drct === "right") { k = "ArrowRight" }
+    body.dispatchEvent(new KeyboardEvent('keydown',{'key': k}));
+}
+
 function drawRect(x, y, w, h, color) {
     ctx.fillStyle = color
     ctx.fillRect(x, y, w, h)
@@ -34,6 +43,7 @@ function drawSnake() {
     for (let i = 0; i < trail.length; i++) {
         drawRect(trail[i].x, trail[i].y, LA, LA, "white")
         if (snakeX == trail[i].x && snakeY == trail[i].y) {
+            scoreT.innerHTML = "Pontos: " + (score = 3)
             snakeX = cvs.width/2
             snakeY = cvs.height/2
             tail = 2
@@ -78,7 +88,7 @@ function update() {
 }
 
 function render() {
-    if (score === (cvs.width + cvs.height) / LA) 
+    if (score === LA * LA) 
         scoreT.innerHTML = "Parabéns, você ganhou!"
     else {
         drawRect(0, 0, cvs.width, cvs.height, "black")

@@ -7,9 +7,20 @@
         <title>Snake Game</title>
         <link rel="stylesheet" href="styles.css">
     </head>
-    <body style="background-color: black; text-align: center;">
-        <h2 style="font-family: fantasy 45px; color: white" id="score">Score: 0</h2>
+    
+    <body>
+        <h2 id="score">Pontos: 0</h2>
         <canvas id="canvas" width="400" height="400" style="border: 1px solid white"></canvas>
+        <div id="controle">
+            <img id="up" onclick=direction("up") src="./seta.png">
+            <br>
+            <div>
+                <img id="left"  onclick=direction("left")  src="./seta.png">
+                <div id="ball"></div>
+                <img id="right" onclick=direction("right") src="./seta.png">
+            </div>
+            <img id="down" onclick=direction("down") src="./seta.png">
+        </div>
     </body>
     <script src="script.js"></script>
 </html>
