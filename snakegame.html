@@ -11,16 +11,21 @@
     <body>
         <h2 id="score">Pontos: 0</h2>
         <canvas id="canvas" width="400" height="400" style="border: 1px solid white"></canvas>
-        <div id="controle">
-            <img id="up" onclick=direction("up") src="./seta.png">
-            <br>
-            <div>
-                <img id="left"  onclick=direction("left")  src="./seta.png">
-                <div id="ball"></div>
-                <img id="right" onclick=direction("right") src="./seta.png">
-            </div>
-            <img id="down" onclick=direction("down") src="./seta.png">
-        </div>
+        <div id="controle"></div>
     </body>
+    
+    <script>
+        let controle = document.getElementById("controle")
+
+        if( navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)) {
+            controle.innerHTML = '                                                                          <img id="up" onclick=direction("up") src="./seta.png"><br>                                  <div>                                                                                           <img id="left"  onclick=direction("left")  src="./seta.png">                                 <div id="ball"></div>                                                                        <img id="right" onclick=direction("right") src="./seta.png">                              </div>                                                                                      <img id="down" onclick=direction("down") src="./seta.png">' 
+        }
+    </script>
     <script src="script.js"></script>
 </html>

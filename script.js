@@ -19,18 +19,28 @@ let foodX = (Math.floor(Math.random() * LA) * LA)
 body.addEventListener("keydown", changeDirection)
 
 function changeDirection(e) {
-    if (e.key === "ArrowUp")    { d = "up" }
-    if (e.key === "ArrowDown")  { d = "down" }
-    if (e.key === "ArrowLeft")  { d = "left" }
-    if (e.key === "ArrowRight") { d = "right" }
+    if (e.key === "ArrowUp")    
+        d = (d == "down" ? "down" : "up") 
+    if (e.key === "ArrowDown")  
+        d = (d == "up" ? "up" : "down")
+    if (e.key === "ArrowLeft")  
+        d = (d == "right" ? "right" : "left")
+    if (e.key === "ArrowRight") 
+        d = (d == "left" ? "left" : "right")
 }
 
 function direction(drct) {
     let k
-    if (drct === "up")    { k = "ArrowUp" }
-    if (drct === "down")  { k = "ArrowDown" }
-    if (drct === "left")  { k = "ArrowLeft" }
-    if (drct === "right") { k = "ArrowRight" }
+    
+    if (drct === "up")    
+        k = "ArrowUp" 
+    if (drct === "down")  
+        k = "ArrowDown" 
+    if (drct === "left")  
+        k = "ArrowLeft" 
+    if (drct === "right") 
+        k = "ArrowRight" 
+        
     body.dispatchEvent(new KeyboardEvent('keydown',{'key': k}));
 }
 
@@ -42,7 +52,10 @@ function drawRect(x, y, w, h, color) {
 function drawSnake() {
     for (let i = 0; i < trail.length; i++) {
         drawRect(trail[i].x, trail[i].y, LA, LA, "white")
-        if (snakeX == trail[i].x && snakeY == trail[i].y) {
+        while (foodY == trail[i].y && foodX == trail[i].x) {
+            foodY = (Math.floor(Math.random() * LA) * LA)
+            foodX = (Math.floor(Math.random() * LA) * LA)
+        } if (snakeX == trail[i].x && snakeY == trail[i].y) {
             scoreT.innerHTML = "Pontos: " + (score = 3)
             snakeX = cvs.width/2
             snakeY = cvs.height/2
@@ -68,23 +81,33 @@ function drawGrid() {
 function update() {
 
     if (snakeY == foodY && snakeX == foodX) {
+        
         foodY = (Math.floor(Math.random() * LA) * LA)
         foodX = (Math.floor(Math.random() * LA) * LA)
+        
         score++
         tail++
 
         scoreT.innerHTML = "Pontos: " + score
     }
 
-    if (d == "up")    { snakeY -= LA }
-    if (d == "down")  { snakeY += LA }
-    if (d == "left")  { snakeX -= LA }
-    if (d == "right") { snakeX += LA }
+    if (d == "up")    
+        snakeY -= LA
+    if (d == "down") 
+        snakeY += LA
+    if (d == "left") 
+        snakeX -= LA
+    if (d == "right") 
+        snakeX += LA
 
-    if (snakeY + LA > cvs.height) { snakeY = 0 }
-    if (snakeY < 0)               { snakeY = cvs.height - LA}
-    if (snakeX + LA > cvs.width)  { snakeX = 0 }
-    if (snakeX < 0)               { snakeX = cvs.width - LA }
+    if (snakeY + LA > cvs.height) 
+        snakeY = 0 
+    if (snakeY < 0)               
+        snakeY = cvs.height - LA
+    if (snakeX + LA > cvs.width)  
+        snakeX = 0 
+    if (snakeX < 0)               
+        snakeX = cvs.width - LA 
 }
 
 function render() {
@@ -104,4 +127,4 @@ function game() {
     render()
 }
 
-setInterval(game, 1000/10)
+setInterval(game, 1000/8)
